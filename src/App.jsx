@@ -34,7 +34,7 @@ function App() {
 
             <Route path='/user' element={<Privateroute/>} >
               <Route path='dashboard' element={<Userdashboard/>} />
-              <Route path='profile-info' element={<Profileinfo/>} />
+              <Route path='profile-info/:userId' element={<Profileinfo/>} />
               <Route path='update-blog/:blogId' element={<Updateblog/>} />
             </Route>
 
