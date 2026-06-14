@@ -44,7 +44,7 @@ const CustomNavbar = (props) => {
                     </Nav>
                     <Nav>
                         <NavItem>
-                            <NavLink tag={ReactLink} to="/profile">Profile Info</NavLink>
+                            <NavLink tag={ReactLink} to="/signup">Sign Up</NavLink>
                         </NavItem>
                     </Nav>
                 </Collapse>
