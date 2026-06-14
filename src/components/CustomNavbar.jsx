@@ -18,13 +18,13 @@ const CustomNavbar = (props) => {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
                         <NavItem>
-                            <NavLink href="">New Feed</NavLink>
+                            <NavLink href="/feeds">New Feed</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="">About</NavLink>
+                            <NavLink href="/about">About</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="">Services</NavLink>
+                            <NavLink href="/services">Services</NavLink>
                         </NavItem>
 
                         <UncontrolledDropdown nav inNavbar>
@@ -32,7 +32,7 @@ const CustomNavbar = (props) => {
                                 More
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem href="">Contact Us</DropdownItem>
+                                <DropdownItem href="/contact">Contact Us</DropdownItem>
                                 <DropdownItem>Facebook</DropdownItem>
                                 <DropdownItem divider />
                                 <DropdownItem>Youtube</DropdownItem>
@@ -41,7 +41,13 @@ const CustomNavbar = (props) => {
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </Nav>
-                    <NavbarText>Simple Text</NavbarText>
+                    <Nav>
+
+                        <NavItem>
+                            <NavLink href="/profile">Profile Info</NavLink>
+                        </NavItem>
+
+                    </Nav>
                 </Collapse>
             </Navbar>
         </div>
