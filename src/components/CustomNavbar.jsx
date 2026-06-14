@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink as ReactLink } from "react-router-dom";
 import {
     Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar,
     NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink, UncontrolledDropdown
@@ -13,18 +14,18 @@ const CustomNavbar = (props) => {
     return (
         <div>
             <Navbar {...props} color='dark' dark expand="md" fixed='' className='px-5'>
-                <NavbarBrand href="/">My Blog Logo</NavbarBrand>
+                <NavbarBrand tag={ReactLink} to="/">My Blog Logo</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
                         <NavItem>
-                            <NavLink href="/feeds">New Feed</NavLink>
+                            <NavLink tag={ReactLink} to="/feeds">New Feed</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/about">About</NavLink>
+                            <NavLink tag={ReactLink} to="/about">About</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/services">Services</NavLink>
+                            <NavLink tag={ReactLink} to="/services">Services</NavLink>
                         </NavItem>
 
                         <UncontrolledDropdown nav inNavbar>
@@ -32,7 +33,7 @@ const CustomNavbar = (props) => {
                                 More
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem href="/contact">Contact Us</DropdownItem>
+                                <DropdownItem tag={ReactLink} to="/contactus">Contact Us</DropdownItem>
                                 <DropdownItem>Facebook</DropdownItem>
                                 <DropdownItem divider />
                                 <DropdownItem>Youtube</DropdownItem>
@@ -42,11 +43,9 @@ const CustomNavbar = (props) => {
                         </UncontrolledDropdown>
                     </Nav>
                     <Nav>
-
                         <NavItem>
-                            <NavLink href="/profile">Profile Info</NavLink>
+                            <NavLink tag={ReactLink} to="/profile">Profile Info</NavLink>
                         </NavItem>
-
                     </Nav>
                 </Collapse>
             </Navbar>
