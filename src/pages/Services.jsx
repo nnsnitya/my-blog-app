@@ -1,12 +1,15 @@
+import Base from "../components/Base";
 
-const Services = () => {
+const MyServices = () => {
 
     return (
-        <div>
-            <h1>This is Services page</h1>
-            <p>Welcome to Services page</p>
-        </div>
+        <Base>
+            <div>
+                <h1>This is My Services page</h1>
+                <p>Welcome to My Services page</p>
+            </div>
+        </Base>
     );
 };
 
-export default Services;
+export default MyServices;

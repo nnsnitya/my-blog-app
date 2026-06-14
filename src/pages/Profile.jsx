@@ -1,11 +1,14 @@
+import Base from "../components/Base";
 
 const Profile = () => {
 
     return (
-        <div>
-            <h1>This is Profile page</h1>
-            <p>Welcome to Profile page</p>
-        </div>
+        <Base>
+            <div>
+                <h1>This is User Profile page</h1>
+                <p>Welcome to User Profile page</p>
+            </div>
+        </Base>
     );
 };
 

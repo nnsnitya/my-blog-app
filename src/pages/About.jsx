@@ -1,11 +1,14 @@
+import Base from "../components/Base";
 
 const About = () => {
 
     return (
-        <div>
-            <h1>This is About page</h1>
-            <p>Welcome to About page</p>
-        </div>
+        <Base>
+            <div>
+                <h1>This is About page</h1>
+                <p>Welcome to About page</p>
+            </div>
+        </Base>
     );
 };
 

@@ -1,11 +1,14 @@
+import Base from "../components/Base";
 
 const Login = () => {
 
     return (
-        <div>
-            <h1>This is Login page</h1>
-            <p>Welcome to Login page</p>
-        </div>
+        <Base>
+            <div>
+                <h1>This is Login page</h1>
+                <p>Welcome to Login page</p>
+            </div>
+        </Base>
     );
 };
 

@@ -1,11 +1,14 @@
+import Base from "../components/Base";
 
 const Postpage = () => {
 
     return (
-        <div>
-            <h1>This is Postpage page</h1>
-            <p>Welcome to Postpage page</p>
-        </div>
+        <Base>
+            <div>
+                <h1>This is Postpage page</h1>
+                <p>Welcome to Postpage page</p>
+            </div>
+        </Base>
     );
 };
 
