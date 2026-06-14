@@ -44,6 +44,9 @@ const CustomNavbar = (props) => {
                     </Nav>
                     <Nav>
                         <NavItem>
+                            <NavLink tag={ReactLink} to="/login">Sign In</NavLink>
+                        </NavItem>
+                        <NavItem>
                             <NavLink tag={ReactLink} to="/signup">Sign Up</NavLink>
                         </NavItem>
                     </Nav>
