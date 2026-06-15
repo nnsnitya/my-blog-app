@@ -1,13 +1,32 @@
 import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormFeedback, FormGroup, Input, Label, Row } from "reactstrap";
 import Base from "../components/Base";
+import { useState } from "react";
 
 const Signup = () => {
+
+    const [data, setData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        about: ''
+    });
+
+    const [error, setError] = useState({
+        errors: {},
+        isError: false
+    });
+
+    //handle change
+    const handleChange = (event) => {
+        console.log("Name changed");
+        console.log(event.target.value);
+    };
 
     return (
         <Base>
             <Container>
 
-                <Row>
+                <Row className="mt-4">
                     <Col sm={{ size: 6, offset: 3 }}>
                         <Card color="dark" inverse>
                             <CardHeader>
@@ -22,6 +41,7 @@ const Signup = () => {
 
                                         <Label for="name">Enter Name</Label>
                                         <Input type="text" placeholder="Enter here" id="name"
+                                            onChange={(e) => handleChange(e)}
                                         />
 
                                     </FormGroup>
