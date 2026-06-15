@@ -22,6 +22,7 @@ const Signup = () => {
         setData({ ...data, [property]: event.target.value })
     };
 
+    //resetting the form
     const resetData = () => {
         setData({
             name: '',
@@ -29,6 +30,16 @@ const Signup = () => {
             password: '',
             about: ''
         })
+    };
+
+    //submitting the form
+    const submitForm = (event) => {
+        event.preventDefault();
+
+        console.log(data);
+        //data validation
+
+        //call server api for sending data
     };
 
     return (
@@ -44,7 +55,7 @@ const Signup = () => {
                             </CardHeader>
                             <CardBody>
                                 {/* Creating form */}
-                                <Form>
+                                <Form onSubmit={submitForm}>
 
                                     {/* Name Field */}
                                     <FormGroup>
