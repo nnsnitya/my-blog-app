@@ -1,6 +1,7 @@
 import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormFeedback, FormGroup, Input, Label, Row } from "reactstrap";
 import Base from "../components/Base";
 import { useState } from "react";
+import { signUp } from "../services/user-service";
 
 const Signup = () => {
 
@@ -40,6 +41,14 @@ const Signup = () => {
         //data validation
 
         //call server api for sending data
+        signUp(data).then((resp) => {
+            console.log(resp);
+            console.log("Success log");
+        })
+            .catch((err) => {
+                console.log(err);
+                console.log("Error log");
+            })
     };
 
     return (
