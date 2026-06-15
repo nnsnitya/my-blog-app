@@ -22,6 +22,15 @@ const Signup = () => {
         setData({ ...data, [property]: event.target.value })
     };
 
+    const resetData = () => {
+        setData({
+            name: '',
+            email: '',
+            password: '',
+            about: ''
+        })
+    };
+
     return (
         <Base>
             <Container>
@@ -84,7 +93,7 @@ const Signup = () => {
                                     <Container className="text-center">
 
                                         <Button outline color="light">Register</Button>
-                                        <Button color="secondary" type="reset" className="ms-2">Reset</Button>
+                                        <Button onClick={resetData} color="secondary" type="reset" className="ms-2">Reset</Button>
 
                                     </Container>
                                 </Form>
