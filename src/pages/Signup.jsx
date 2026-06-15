@@ -2,6 +2,7 @@ import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormFeedback,
 import Base from "../components/Base";
 import { useState } from "react";
 import { signUp } from "../services/user-service";
+import { toast } from "react-toastify";
 
 const Signup = () => {
 
@@ -44,6 +45,8 @@ const Signup = () => {
         signUp(data).then((resp) => {
             console.log(resp);
             console.log("Success log");
+            toast.success("User is registered successfully!");
+            resetData();
         })
             .catch((err) => {
                 console.log(err);
@@ -56,7 +59,6 @@ const Signup = () => {
             <Container>
 
                 <Row className="mt-4">
-                    {JSON.stringify(data)}
                     <Col sm={{ size: 6, offset: 3 }}>
                         <Card color="dark" inverse>
                             <CardHeader>

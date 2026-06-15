@@ -10,11 +10,13 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Contactus from './pages/Contactus';
 import Profile from './pages/Profile';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
   return (
     <BrowserRouter>
+      <ToastContainer position='bottom-right' />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
