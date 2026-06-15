@@ -17,9 +17,9 @@ const Signup = () => {
     });
 
     //handle change
-    const handleChange = (event) => {
-        console.log("Name changed");
-        console.log(event.target.value);
+    const handleChange = (event, property) => {
+        //dynamic setting the value
+        setData({ ...data, [property]: event.target.value })
     };
 
     return (
@@ -27,6 +27,7 @@ const Signup = () => {
             <Container>
 
                 <Row className="mt-4">
+                    {JSON.stringify(data)}
                     <Col sm={{ size: 6, offset: 3 }}>
                         <Card color="dark" inverse>
                             <CardHeader>
@@ -41,7 +42,8 @@ const Signup = () => {
 
                                         <Label for="name">Enter Name</Label>
                                         <Input type="text" placeholder="Enter here" id="name"
-                                            onChange={(e) => handleChange(e)}
+                                            onChange={(e) => handleChange(e, 'name')}
+                                            value={data.name}
                                         />
 
                                     </FormGroup>
@@ -51,6 +53,8 @@ const Signup = () => {
 
                                         <Label for="email">Enter Email</Label>
                                         <Input type="text" placeholder="Enter here" id="email"
+                                            onChange={(e) => handleChange(e, 'email')}
+                                            value={data.email}
                                         />
 
                                     </FormGroup>
@@ -60,6 +64,8 @@ const Signup = () => {
 
                                         <Label for="password">Enter Password</Label>
                                         <Input type="password" placeholder="Enter here" id="password"
+                                            onChange={(e) => handleChange(e, 'password')}
+                                            value={data.password}
                                         />
 
                                     </FormGroup>
@@ -69,6 +75,8 @@ const Signup = () => {
 
                                         <Label for="about">Enter About</Label>
                                         <Input type="textarea" placeholder="Enter here" id="about" style={{ height: "250px" }}
+                                            onChange={(e) => handleChange(e, 'about')}
+                                            value={data.about}
                                         />
 
                                     </FormGroup>
