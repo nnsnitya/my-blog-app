@@ -3,6 +3,7 @@ import Base from "../components/Base";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "../assets/css/Card.css";
+import { userSignin } from "../services/user-service";
 
 const Login = () => {
 
@@ -19,6 +20,29 @@ const Login = () => {
             [field]: actualValue
         })
     };
+    const handleFormSubmit = (evt) => {
+        evt.preventDefault();
+        console.log(loginDetail);
+
+        //validation
+        if (loginDetail.username.trim() == '' || loginDetail.password.trim() == '') {
+            toast.error("Username and Password are required !!");
+            return;
+        }
+
+        //submit data to server to generate token
+        userSignin(loginDetail).then((privateData) => {
+            console.log("User Login: ");
+            console.log(privateData);
+        }).catch(error => {
+            console.log(error);
+            if (error.response.status == 400 || error.response.status == 404) {
+                toast.error(error.response.data.message);
+            }
+            toast.error("Something went wrong on server !!");
+        })
+    };
+
     const handleReset = () => {
         setLoginDetail({
             username: "",
@@ -37,6 +61,7 @@ const Login = () => {
                                     <h3>Login Here!!</h3>
                                 </CardHeader>
                                 <CardBody>
+                                    <Form onSubmit={handleFormSubmit}>
                                         {/* Email Field */}
                                         <FormGroup>
                                             <Label for="email">Enter Email</Label>
