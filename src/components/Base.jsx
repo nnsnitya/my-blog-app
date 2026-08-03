@@ -8,11 +8,14 @@ const Base = ({ title = "Welcome to our website", children }) => {
         <div className="base-page" style={{
             backgroundImage: `url(${bgImage})`
         }}>
+
             <CustomNavbar />
+
             <main className="page-content">
                 {children}
             </main>
-            <footer className="footer">
+
+            <footer className="footer mt-5">
                 <h1>This is footer</h1>
             </footer>
         </div>

@@ -126,7 +126,9 @@ const Signup = () => {
                 </Row>
             </Container>
         </Base>
+        <div className="overlay">
                             <Card className="main-card" color="dark" outline>
+        </div>
     );
 };
 

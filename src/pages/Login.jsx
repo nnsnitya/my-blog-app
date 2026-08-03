@@ -37,7 +37,9 @@ const Login = () => {
                 </Row>
             </Container>
         </Base>
+        <div className="overlay">
                             <Card className="main-card" color="secondary" inverse>
+        </div>
     );
 };
 
