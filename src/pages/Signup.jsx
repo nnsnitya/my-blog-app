@@ -58,82 +58,92 @@ const Signup = () => {
             .catch((err) => {
                 console.log(err);
                 console.log("Error log");
+                //handle errors in proper way
+                setError({
+                    errors: err,
+                    isError: true
+                })
             })
     };
 
     return (
-        <Base>
-            <Container>
-
-                <Row className="mt-4">
-                    <Col sm={{ size: 6, offset: 3 }}>
-                        <Card color="dark" inverse>
-                            <CardHeader>
-                                <h3>Fill Information to Register !!</h3>
-                            </CardHeader>
-                            <CardBody>
-                                {/* Creating form */}
-                                <Form onSubmit={submitForm}>
-
-                                    {/* Name Field */}
-                                    <FormGroup>
-
-                                        <Label for="name">Enter Name</Label>
-                                        <Input type="text" placeholder="Enter here" id="name"
-                                            onChange={(e) => handleChange(e, 'name')}
-                                            value={data.name}
-                                        />
-
-                                    </FormGroup>
-
-                                    {/* Email Field */}
-                                    <FormGroup>
-
-                                        <Label for="email">Enter Email</Label>
-                                        <Input type="text" placeholder="Enter here" id="email"
-                                            onChange={(e) => handleChange(e, 'email')}
-                                            value={data.email}
-                                        />
-
-                                    </FormGroup>
-
-                                    {/* Password Field */}
-                                    <FormGroup>
-
-                                        <Label for="password">Enter Password</Label>
-                                        <Input type="password" placeholder="Enter here" id="password"
-                                            onChange={(e) => handleChange(e, 'password')}
-                                            value={data.password}
-                                        />
-
-                                    </FormGroup>
-
-                                    {/* About Field */}
-                                    <FormGroup>
-
-                                        <Label for="about">Enter About</Label>
-                                        <Input type="textarea" placeholder="Enter here" id="about" style={{ height: "250px" }}
-                                            onChange={(e) => handleChange(e, 'about')}
-                                            value={data.about}
-                                        />
-
-                                    </FormGroup>
-
-                                    <Container className="text-center">
-
-                                        <Button outline color="light">Register</Button>
-                                        <Button onClick={resetData} color="secondary" type="reset" className="ms-2">Reset</Button>
-
-                                    </Container>
-                                </Form>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
-        </Base>
         <div className="overlay">
+            <Base>
+                <Container>
+
+                    <Row className="mt-4">
+                        <Col sm={{ size: 6, offset: 3 }}>
                             <Card className="main-card" color="dark" outline>
+                                <CardHeader>
+                                    <h3>Fill Information to Register !!</h3>
+                                </CardHeader>
+                                <CardBody>
+                                    {/* Creating form */}
+                                    <Form onSubmit={submitForm}>
+
+                                        {/* Name Field */}
+                                        <FormGroup floating className="mb-4">
+
+                                            <Input type="text" placeholder="Enter here" id="name"
+                                                onChange={(e) => handleChange(e, 'name')}
+                                                value={data.name}
+                                                invalid={error.errors?.resp?.data?.name ? true : false}
+                                            />
+                                            <Label for="name">Enter Name</Label>
+                                            <FormFeedback>
+                                                {
+                                                    error.errors?.resp?.data?.name
+                                                }
+                                            </FormFeedback>
+
+                                        </FormGroup>
+                                        {' '}
+                                        {/* Email Field */}
+                                        <FormGroup floating>
+
+
+                                            <Input type="text" placeholder="Enter here" id="email"
+                                                onChange={(e) => handleChange(e, 'email')}
+                                                value={data.email}
+                                            />
+                                            <Label for="email">Enter Email</Label>
+                                        </FormGroup>
+                                        {' '}
+                                        {/* Password Field */}
+                                        <FormGroup floating>
+
+
+                                            <Input type="password" placeholder="Enter here" id="password"
+                                                onChange={(e) => handleChange(e, 'password')}
+                                                value={data.password}
+                                            />
+                                            <Label for="password">Enter Password</Label>
+                                        </FormGroup>
+                                        {' '}
+                                        {/* About Field */}
+                                        <FormGroup floating>
+
+
+                                            <Input type="textarea" placeholder="Enter here" id="about" style={{ height: "250px" }}
+                                                onChange={(e) => handleChange(e, 'about')}
+                                                value={data.about}
+                                            />
+                                            <Label for="about">Enter About</Label>
+                                        </FormGroup>
+                                        {' '}
+                                        <Container className="text-center">
+
+                                            <Button color="secondary" color="light">Register</Button>
+                                            <Button onClick={resetData} color="secondary" type="reset" className="ms-2">Reset</Button>
+
+                                        </Container>
+                                    </Form>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
+                </Container>
+            </Base>
         </div>
     );
 };
