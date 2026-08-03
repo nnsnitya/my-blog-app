@@ -1,7 +1,7 @@
 import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormFeedback, FormGroup, Input, Label, Row } from "reactstrap";
 import Base from "../components/Base";
 import { useState } from "react";
-import { signUp } from "../services/user-service";
+import { userSignup } from "../services/user-service";
 import { toast } from "react-toastify";
 import "../assets/css/Card.css";
 
@@ -20,9 +20,9 @@ const Signup = () => {
     });
 
     //handle change
-    const handleChange = (event, property) => {
+    const handleChange = (evt, property) => {
         //dynamic setting the value
-        setData({ ...data, [property]: event.target.value })
+        setData({ ...data, [property]: evt.target.value })
     };
 
     //resetting the form
@@ -36,17 +36,23 @@ const Signup = () => {
     };
 
     //submitting the form
-    const submitForm = (event) => {
-        event.preventDefault();
+    const submitForm = (evt) => {
+        evt.preventDefault();
+
+        // if (error.isError) {
+        //     toast.error("Form data is invalid, correct all details then submit !!");
+
+        //     return;
+        // }                //Problem in this approach, control will not move below until isError will not false
 
         console.log(data);
         //data validation
 
         //call server api for sending data
-        signUp(data).then((resp) => {
+        userSignup(data).then((resp) => {
             console.log(resp);
             console.log("Success log");
-            toast.success("User is registered successfully!");
+            toast.success("User is registered successfully!! user id " + resp.id);
             resetData();
         })
             .catch((err) => {
