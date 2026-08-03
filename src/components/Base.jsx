@@ -1,12 +1,20 @@
 import CustomNavbar from "./CustomNavbar";
+import bgImage from "../assets/hero.png";
+import "../assets/css/Base.css"
 
 
 const Base = ({ title = "Welcome to our website", children }) => {
     return (
-        <div className="container-fluid p-0 m-0">
+        <div className="base-page" style={{
+            backgroundImage: `url(${bgImage})`
+        }}>
             <CustomNavbar />
-            {children}
-            <h1>This is footer</h1>
+            <main className="page-content">
+                {children}
+            </main>
+            <footer className="footer">
+                <h1>This is footer</h1>
+            </footer>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import Base from "../components/Base";
+import "../assets/css/Card.css";
 
 const Login = () => {
 
@@ -36,6 +37,7 @@ const Login = () => {
                 </Row>
             </Container>
         </Base>
+                            <Card className="main-card" color="secondary" inverse>
     );
 };
 

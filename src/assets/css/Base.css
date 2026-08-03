@@ -1,0 +1,27 @@
+.base-page {
+    /* background-image: url("../assets/images/bg_image.jpg"); */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* keeps the image fixed */
+}
+
+html {
+    scrollbar-gutter: stable;
+}
+
+.page-content {
+    flex: 1;
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    /* background: rgba(0, 0, 0, .8); */
+    color: white;
+}

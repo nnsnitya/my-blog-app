@@ -3,6 +3,7 @@ import Base from "../components/Base";
 import { useState } from "react";
 import { signUp } from "../services/user-service";
 import { toast } from "react-toastify";
+import "../assets/css/Card.css";
 
 const Signup = () => {
 
@@ -125,6 +126,7 @@ const Signup = () => {
                 </Row>
             </Container>
         </Base>
+                            <Card className="main-card" color="dark" outline>
     );
 };
 
