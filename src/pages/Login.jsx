@@ -19,6 +19,13 @@ const Login = () => {
             [field]: actualValue
         })
     };
+    const handleReset = () => {
+        setLoginDetail({
+            username: "",
+            password: ""
+        });
+    };
+
     return (
         <div className="overlay">
             <Base>
@@ -49,6 +56,7 @@ const Login = () => {
 
                                         <Container>
                                             <Button color="light" outline>Login</Button>
+                                            <Button onClick={handleReset} className="ms-2" color="secondary">Reset</Button>
                                         </Container>
                                     </Form>
                                 </CardBody>
