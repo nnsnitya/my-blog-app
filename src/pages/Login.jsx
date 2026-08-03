@@ -6,6 +6,19 @@ import "../assets/css/Card.css";
 
 const Login = () => {
 
+    const [loginDetail, setLoginDetail] = useState({
+        username: '',
+        password: ''
+
+    });
+
+    const handleChange = (evt, field) => {
+        let actualValue = evt.target.value;
+        setLoginDetail({
+            ...loginDetail,
+            [field]: actualValue
+        })
+    };
     return (
         <div className="overlay">
             <Base>
@@ -22,6 +35,7 @@ const Login = () => {
                                             <Label for="email">Enter Email</Label>
                                             <Input type="text" id="email"
                                                 value={loginDetail.username}
+                                                onChange={(e) => handleChange(e, 'username')}
                                             />
                                         </FormGroup>
                                         {/* Password Field */}
@@ -29,6 +43,7 @@ const Login = () => {
                                             <Label for="password">Enter Password</Label>
                                             <Input type="password" id="password"
                                                 value={loginDetail.password}
+                                                onChange={(e) => handleChange(e, 'password')}
                                             />
                                         </FormGroup>
 
