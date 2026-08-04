@@ -11,6 +11,7 @@ import Services from './pages/Services';
 import Contactus from './pages/Contactus';
 import Profile from './pages/Profile';
 import { ToastContainer } from 'react-toastify';
+import Userdashboard from './pages/Userdashboard';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/dashboard' element={<Userdashboard />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/feeds' element={<Postpage />} />
         <Route path='/about' element={<About />} />

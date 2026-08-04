@@ -38,6 +38,8 @@ const Login = () => {
             //save the data to localStorage
             doLogin(privateData, () => {
                 console.log("login detail is saved to localStorage");
+
+                //redirect to user dashboard page
             })
 
         }).catch(error => {
