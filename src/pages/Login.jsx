@@ -5,8 +5,11 @@ import { toast } from "react-toastify";
 import "../assets/css/Card.css";
 import { userSignin } from "../services/user-service";
 import { doLogin } from "../auth";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
+    const navigate = useNavigate();
 
     const [loginDetail, setLoginDetail] = useState({
         username: '',
@@ -40,6 +43,7 @@ const Login = () => {
                 console.log("login detail is saved to localStorage");
 
                 //redirect to user dashboard page
+                navigate("/user/dashboard");
             })
 
         }).catch(error => {
