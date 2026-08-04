@@ -9,10 +9,10 @@ import Postpage from './pages/Postpage';
 import About from './pages/About';
 import Services from './pages/Services';
 import Contactus from './pages/Contactus';
-import Profile from './pages/Profile';
 import { ToastContainer } from 'react-toastify';
-import Userdashboard from './pages/Userdashboard';
+import Userdashboard from './pages/user-routes/Userdashboard';
 import Privateroutes from './components/Privateroutes';
+import Profileinfo from './pages/user-routes/Profileinfo';
 
 function App() {
 
@@ -28,10 +28,11 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/services' element={<Services />} />
         <Route path='/contactus' element={<Contactus />} />
-        <Route path='/profile' element={<Profile />} />
+        {/* <Route path='/profile' element={<Profile />} /> */}
 
         <Route path='/user' element={<Privateroutes />}>
-          <Route path='/dashboard' element={<Userdashboard />} />
+          <Route path='dashboard' element={<Userdashboard />} />
+          <Route path='profile-info' element={<Profileinfo />} />
         </Route>
       </Routes>
     </BrowserRouter>
