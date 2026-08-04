@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import "../assets/css/Card.css";
 import { userSignin } from "../services/user-service";
+import { doLogin } from "../auth";
 
 const Login = () => {
 
@@ -32,8 +33,13 @@ const Login = () => {
 
         //submit data to server to generate token
         userSignin(loginDetail).then((privateData) => {
-            console.log("User Login: ");
             console.log(privateData);
+
+            //save the data to localStorage
+            doLogin(privateData, () => {
+                console.log("login detail is saved to localStorage");
+            })
+
         }).catch(error => {
             console.log(error);
             if (error.response.status == 400 || error.response.status == 404) {
