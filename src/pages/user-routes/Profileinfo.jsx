@@ -1,11 +1,17 @@
 import React from "react";
+import Base from "../../components/Base";
 
 function Profileinfo() {
 
 
 
     return (
-        <div>profile-info</div>
+        <Base>
+            <div>
+                <div>profile-info</div>
+            </div>
+        </Base>
+
     )
 };
 
