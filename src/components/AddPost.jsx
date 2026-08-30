@@ -7,6 +7,9 @@ const AddPost = () => {
     const editor = useRef(null);
     const [content, setContent] = useState('');
     const [categories, setCategories] = useState([]);
+    const config = {
+        placeholder: "Start typing..."
+    }
 
     useEffect(() => {
         loadAllCategories().then((data) => {
@@ -32,6 +35,7 @@ const AddPost = () => {
                             <Label for="content"></Label>
                             <JoditEditor
                                 ref={editor} value={content}
+                                config={config}
                                 onChange={newContent => setContent(newContent)} />
                         </div>
                         <div className="my-3">
@@ -52,6 +56,7 @@ const AddPost = () => {
                             <Button color="danger" className="ms-2">Reset Content</Button>
                         </Container>
                     </Form>
+                    {content}
                 </CardBody>
             </Card>
         </div>
