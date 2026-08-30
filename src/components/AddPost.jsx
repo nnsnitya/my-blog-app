@@ -1,6 +1,19 @@
+import { useEffect, useState } from "react";
 import { Button, Card, CardBody, Container, Form, Input, Label } from "reactstrap";
+import { loadAllCategories } from "../services/category-service";
 
 const AddPost = () => {
+
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        loadAllCategories().then((data) => {
+            console.log(data);
+            setCategories(data);
+        }).catch(error => {
+            console.log(error);
+        })
+    }, [])
 
     return (
         <div className="wrapper">
@@ -23,12 +36,13 @@ const AddPost = () => {
                         <div className="my-3">
                             <Label for="category">Post Category</Label>
                             <Input type="select" id="category">
-                                <option>
-                                    Programming
-                                </option>
-                                <option>
-                                    Politics
-                                </option>
+                                {
+                                    categories.map((category) => (
+                                        <option value={category.categoryId} key={category.categoryId}>
+                                            {category.categoryTitle}
+                                        </option>
+                                    ))
+                                }
                             </Input>
 
                         </div>
