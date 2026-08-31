@@ -1,13 +1,19 @@
+import { useEffect } from "react";
 import Base from "../components/Base";
+import { Col, Container, Row } from "reactstrap";
+import { loadAllPosts } from "../services/post-service";
+import NewFeed from "../components/NewFeed";
 
 const Home = () => {
 
+    useEffect(() => {
+        //load all the posts from server
+    }, []);
     return (
         <Base>
-            <div>
-                <h1>This is home page</h1>
-                <p>Welcome to Home page</p>
-            </div>
+            <Container className="mt-3">
+                <NewFeed />
+            </Container>
         </Base>
     );
 };
