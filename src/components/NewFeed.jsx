@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { loadAllPosts } from "../services/post-service";
-import { Col, Row } from "reactstrap";
+import { Col, Container, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
 import SinglePost from "./SinglePost";
 
 const NewFeed = () => {
 
     const [postContent, setPostContent] = useState({
         content: [],
+        totalPages: '',
+        totalElements: '',
+        pageSize: '',
+        lastPage: false
     });
 
     useEffect(() => {
@@ -31,6 +35,36 @@ const NewFeed = () => {
                             <SinglePost post={post} key={post.postId} />
                         ))
                     }
+                    <Container className="mt-3">
+                        <Pagination>
+                            <PaginationItem>
+                                <PaginationLink first>
+
+                                </PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink previous>
+
+                                </PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink>
+                                    1
+                                </PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink next>
+
+                                </PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink last>
+
+                                </PaginationLink>
+                            </PaginationItem>
+                        </Pagination>
+                    </Container>
+
                 </Col>
             </Row>
         </div >
