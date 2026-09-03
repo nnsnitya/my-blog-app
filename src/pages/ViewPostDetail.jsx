@@ -1,6 +1,6 @@
 import Base from "../components/Base";
 
-const Postpage = () => {
+const ViewPostDetail = () => {
 
     return (
         <Base>
@@ -12,4 +12,4 @@ const Postpage = () => {
     );
 };
 
-export default Postpage;
+export default ViewPostDetail;
