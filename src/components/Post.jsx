@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button, Card, CardBody, CardText } from "reactstrap";
 
-const SinglePost = ({ post = { id: -1, title: "This is default post title", content: "This is default content" } }) => {
+export const Post = ({ post = { title: "This is default post title", content: "This is default content" } }) => {
 
     return (
         <Card className="shadow-sm mt-3">
@@ -11,11 +11,11 @@ const SinglePost = ({ post = { id: -1, title: "This is default post title", cont
 
                 </CardText>
                 <div>
-                    <Link className="btn btn-secondary" to="/feed">Read More</Link>
+                    <Link className="btn btn-secondary" to={'/feeds/' + post.postId}>Read More</Link>
                 </div>
             </CardBody>
         </Card>
     );
 }
 
-export default SinglePost;
+// export default Post;

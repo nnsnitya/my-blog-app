@@ -5,7 +5,7 @@ import Home from './pages/Home'
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Base from './components/Base';
-import ViewPostDetail from './pages/ViewPostDetail';
+import PostDetail from './pages/PostDetail';
 import About from './pages/About';
 import Services from './pages/Services';
 import Contactus from './pages/Contactus';
@@ -24,7 +24,7 @@ function App() {
         <Route path='/login' element={<Login />} />
 
         <Route path='/signup' element={<Signup />} />
-        <Route path='/feeds' element={<ViewPostDetail />} />
+        <Route path='/post/:postId' element={<PostDetail />} />
         <Route path='/about' element={<About />} />
         <Route path='/services' element={<Services />} />
         <Route path='/contactus' element={<Contactus />} />

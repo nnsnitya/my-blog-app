@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { loadAllPosts } from "../services/post-service";
 import { Col, Container, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
-import SinglePost from "./SinglePost";
+import { Post as SinglePost } from "./Post";
 import { toast } from "react-toastify";
 
 const NewFeed = () => {
