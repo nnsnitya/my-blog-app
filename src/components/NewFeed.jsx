@@ -44,7 +44,7 @@ const NewFeed = () => {
                 }}>
                     <h1>Blog Count {postContent?.totalElements}</h1>
                     {
-                        postContent?.posts?.map((post) => (
+                        postContent.posts?.map((post) => (
                             <SinglePost post={post} key={post.postId} />
                         ))
                     }

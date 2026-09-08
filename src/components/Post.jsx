@@ -11,7 +11,7 @@ export const Post = ({ post = { title: "This is default post title", content: "T
 
                 </CardText>
                 <div>
-                    <Link className="btn btn-secondary" to={'/feeds/' + post.postId}>Read More</Link>
+                    <Link className="btn btn-secondary" to={'/posts/' + post.postId}>Read More</Link>
                 </div>
             </CardBody>
         </Card>

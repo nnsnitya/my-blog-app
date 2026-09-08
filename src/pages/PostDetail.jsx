@@ -39,19 +39,19 @@ const PostDetail = () => {
                             {
                                 (post) && (
                                     <CardBody>
-                                        <CardText>Posted By <b>{printDate(post?.postDate)}</b> on {new Date(post?.postDate)}</CardText>
+                                        <CardText>Posted By <b>{post?.userName}</b> on {printDate(post?.postDate)}</CardText>
                                         <CardText>
                                             <span className="text-muted">{post.category.categoryTitle}</span>
                                         </CardText>
                                         <div className="divider" style={{ width: '100%', height: '1px', background: '#e2e2e2' }}>
 
                                         </div>
-                                        <CardText>
+                                        <CardText className="mt-3">
                                             <h2>{post.title}</h2>
-                                            <div className="image-container mt-4 shadow" style={{ maxWidth: '50%' }}>
-                                                <img className="img-fluid" src={BASE_URL + '/post/image/post.imageName'} alt="" />
-                                            </div>
                                         </CardText>
+                                        <div className="image-container container mt-4 shadow" style={{ maxWidth: '50%' }}>
+                                            <img className="img-fluid" src={BASE_URL + '/posts/image/' + post.imageName} alt="" />
+                                        </div>
                                         <CardText className="mt-4" dangerouslySetInnerHTML={{ __html: post.content }}></CardText>
                                     </CardBody>
                                 )
