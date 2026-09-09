@@ -13,29 +13,32 @@ import { ToastContainer } from 'react-toastify';
 import Userdashboard from './pages/user-routes/Userdashboard';
 import Privateroutes from './components/Privateroutes';
 import Profileinfo from './pages/user-routes/Profileinfo';
+import UserProvider from './context/UserProvider';
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <ToastContainer position='bottom-right' />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
+    <UserProvider>
+      <BrowserRouter>
+        <ToastContainer position='bottom-right' />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
 
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/posts/:postId' element={<PostDetail />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/services' element={<Services />} />
-        <Route path='/contactus' element={<Contactus />} />
-        {/* <Route path='/profile' element={<Profile />} /> */}
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/posts/:postId' element={<PostDetail />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/services' element={<Services />} />
+          <Route path='/contactus' element={<Contactus />} />
+          {/* <Route path='/profile' element={<Profile />} /> */}
 
-        <Route path='/user' element={<Privateroutes />}>
-          <Route path='dashboard' element={<Userdashboard />} />
-          <Route path='profile-info' element={<Profileinfo />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          <Route path='/user' element={<Privateroutes />}>
+            <Route path='dashboard' element={<Userdashboard />} />
+            <Route path='profile-info' element={<Profileinfo />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   )
 }
 

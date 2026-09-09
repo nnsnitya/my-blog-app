@@ -1,14 +1,18 @@
 import Base from "../components/Base";
-
+import userContext from "../context/userContext";
 const MyServices = () => {
 
     return (
-        <Base>
-            <div>
-                <h1>This is My Services page</h1>
-                <p>Welcome to My Services page</p>
-            </div>
-        </Base>
+        <userContext.Consumer>
+            {(user) => (
+                <Base>
+                    <div>
+                        <h1>This is My Services page</h1>
+                        <p>Welcome, {user.name}</p>
+                    </div>
+                </Base>
+            )}
+        </userContext.Consumer>
     );
 };
 
