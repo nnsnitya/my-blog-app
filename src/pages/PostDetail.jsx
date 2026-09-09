@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import Base from "../components/Base";
-import { Card, CardBody, CardText, Col, Container, Row } from "reactstrap";
+import { Button, Card, CardBody, CardText, Col, Container, Input, Row } from "reactstrap";
 import { useEffect, useState } from "react";
-import { loadPost } from "../services/post-service";
+import { createComment, loadPost } from "../services/post-service";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../services/helper";
 
@@ -10,6 +10,9 @@ const PostDetail = () => {
 
     const { postId } = useParams();
     const [post, setPost] = useState(null);
+    const [comment, setComment] = useState({
+        content: ''
+    })
 
     useEffect(() => {
         //load post of postId
@@ -26,16 +29,35 @@ const PostDetail = () => {
 
         return new Date(numbers).toLocaleString();
     }
+    const submitComment = () => {
+        if (comment.content.trim() === '') {
+            return;
+        }
+        createComment(comment, post.postId)
+            .then(resp => {
+                console.log(resp);
+                toast.success("Comment added ..");
+                setPost({
+                    ...post,
+                    comments: [...post.comments, resp.data.data]
+                })
+                setComment({
+                    content: ''
+                })
+            }).catch(error => {
+                console.log(error);
+            })
+    };
 
     return (
         <Base>
-            <Container className="mt-4">
+            <Container className="mt-4 border-0">
                 <Link to={"/"}>Home</Link > / {post && (<Link to=" ">{post.title}</Link>)}
                 <Row>
                     <Col md={{
                         size: 12
                     }}>
-                        <Card className="mt-3 ps-2 shadow-sm">
+                        <Card className="mt-3 ps-2 shadow-sm border-0">
                             {
                                 (post) && (
                                     <CardBody>
@@ -57,6 +79,33 @@ const PostDetail = () => {
                                 )
                             }
                         </Card>
+                    </Col>
+                </Row>
+
+                <Row className="my-4">
+                    <Col md={{ size: 9, offset: 1 }}>
+
+                        <h3>Comments ({post ? post.comments.length : 0})</h3>
+                        {
+                            post && post.comments.map((c, index) => (
+                                <Card className="mt-4 border-0" key={index}>
+                                    <CardBody>
+                                        <CardText>
+                                            {c.content}
+                                        </CardText>
+                                    </CardBody>
+                                </Card>
+                            ))
+                        }
+                        <Card className="mt-2 border-0">
+                            <CardBody>
+                                <Input type="textarea" placeholder="Enter comments here.."
+                                    onChange={(e) => setComment({ content: e.target.value })}
+                                    value={comment.content} />
+                                <Button onClick={submitComment} className="mt-2" color="primary" >Submit</Button>
+                            </CardBody>
+                        </Card>
+
                     </Col>
                 </Row>
             </Container>
