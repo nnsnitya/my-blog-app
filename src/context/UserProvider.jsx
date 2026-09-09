@@ -7,6 +7,12 @@ const UserProvider = ({ children }) => {
         name: 'Nityanand'
     })
 
+    useEffect(() => {//can load any data from apis
+        setUser({
+            name: 'Ankit Kumar'
+        })
+    }, [])
+
     return (
         <userContext.Provider value={user}>
             {children}
