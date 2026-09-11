@@ -5,6 +5,7 @@ import JoditEditor from "jodit-react";
 import { createPost as submitPostToServer, uploadPostImage } from "../services/post-service";
 import { getCurrentUser } from "../auth";
 import { toast } from "react-toastify";
+import "../assets/css/Inputfields.css";
 
 const AddPost = () => {
     const editor = useRef(null);
@@ -94,10 +95,10 @@ const AddPost = () => {
                 <CardBody>
                     <h3>What's going in your mind</h3>
                     <Form onSubmit={createPost}>
-                        <div className="my-3">
-                            <Label for="title">Post Title</Label>
+                        <div className="floating-input my-3">
                             <Input type="text" id="title" name="title"
-                                onChange={fieldChanged} placeholder="Enter your title here" />
+                                onChange={fieldChanged} placeholder="" />
+                            <Label for="title">Post Title</Label>
 
                         </div>
                         <div className="my-3">
@@ -107,9 +108,9 @@ const AddPost = () => {
                                 onChange={contentFieldChanged} />
                         </div>
                         {/* file field */}
-                        <div className="mt-3">
+                        <div className="floating-input mt-3">
+                            <Input id="image" type="file" onChange={handleFileChange} placeholder="" />
                             <Label for="image">Select post banner</Label>
-                            <Input id="image" type="file" onChange={handleFileChange} />
                         </div>
                         <div className="my-3">
                             <Label for="category">Post Category</Label>
