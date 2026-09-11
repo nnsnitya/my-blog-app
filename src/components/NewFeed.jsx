@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { loadAllPosts } from "../services/post-service";
 import { Col, Container, Row } from "reactstrap";
 import { Post as SinglePost } from "./Post";
@@ -17,40 +17,48 @@ const NewFeed = () => {
     });
 
     const [currentPage, setCurrentPage] = useState(0);
+    const loadedPages = useRef(new Set());
+    const loadingPages = useRef(new Set());
 
     useEffect(() => {
         //load all posts from server
         changePage(currentPage);
+
     }, [currentPage])
 
-    const changePage = (pageNumber = 0, pageSize = 5) => {
-        //load all posts from server
-        if ((pageNumber > postContent.pageNumber && postContent.lastPage)
-            || (pageNumber < postContent.pageNumber && postContent.pageNumber == 0)) {
+    const changePage = async (pageNumber = 0, pageSize = 3) => {
+        if (loadedPages.current.has(pageNumber) || loadingPages.current.has(pageNumber)
+        ) {
+            console.log("Skipping page:", pageNumber);
             return;
         }
-
-        loadAllPosts(pageNumber, pageSize).then(data => {
-            // setPostContent(data)
-            setPostContent({
-                content: [...postContent.content, ...data.posts],
+        loadingPages.current.add(pageNumber);
+        console.log("Loading page:", pageNumber);
+        try {
+            const data = await loadAllPosts(pageNumber, pageSize);
+            loadedPages.current.add(pageNumber);
+            setPostContent(prev => ({
+                ...prev,
+                content: [...prev.content, ...data.posts],
                 totalPages: data.totalPages,
                 totalElements: data.totalElements,
                 pageSize: data.pageSize,
                 lastPage: data.lastPage,
                 pageNumber: data.pageNumber
-            })
-            console.log("Page Number: ", pageNumber)
-            // window.scroll(0, 0);
-        }).catch(err => {
+            }));
+            console.log(data);
+        } catch (err) {
+            console.error(err);
             toast.error("Error in loading posts");
-        })
-    }
+        } finally {
+            loadingPages.current.delete(pageNumber);
+        }
+    };
 
     const changePageInfinite = () => {
         console.log("page changed..");
-        setCurrentPage(currentPage + 1);
-    }
+        setCurrentPage(prev => prev + 1);
+    };
 
     return (
         <div className="container">
