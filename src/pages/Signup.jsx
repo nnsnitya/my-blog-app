@@ -4,6 +4,7 @@ import { useState } from "react";
 import { userSignup } from "../services/user-service";
 import { toast } from "react-toastify";
 import "../assets/css/Card.css";
+import "../assets/css/Inputfields.css";
 
 const Signup = () => {
 
@@ -82,9 +83,9 @@ const Signup = () => {
                                     <Form onSubmit={submitForm}>
 
                                         {/* Name Field */}
-                                        <FormGroup floating className="mb-4">
+                                        <FormGroup className="floating-input mb-4">
 
-                                            <Input type="text" placeholder="Enter here" id="name"
+                                            <Input type="text" placeholder="" id="name"
                                                 onChange={(e) => handleChange(e, 'name')}
                                                 value={data.name}
                                                 invalid={error.errors?.resp?.data?.name ? true : false}
@@ -99,10 +100,10 @@ const Signup = () => {
                                         </FormGroup>
                                         {' '}
                                         {/* Email Field */}
-                                        <FormGroup floating>
+                                        <FormGroup className="floating-input">
 
 
-                                            <Input type="text" placeholder="Enter here" id="email"
+                                            <Input type="text" placeholder="" id="email"
                                                 onChange={(e) => handleChange(e, 'email')}
                                                 value={data.email}
                                             />
@@ -110,10 +111,10 @@ const Signup = () => {
                                         </FormGroup>
                                         {' '}
                                         {/* Password Field */}
-                                        <FormGroup floating>
+                                        <FormGroup className="floating-input">
 
 
-                                            <Input type="password" placeholder="Enter here" id="password"
+                                            <Input type="password" placeholder="" id="password"
                                                 onChange={(e) => handleChange(e, 'password')}
                                                 value={data.password}
                                             />

@@ -6,6 +6,7 @@ import "../assets/css/Card.css";
 import { userSignin } from "../services/user-service";
 import { doLogin } from "../auth";
 import { useNavigate } from "react-router-dom";
+import "../assets/css/Inputfields.css";
 
 const Login = () => {
 
@@ -75,20 +76,20 @@ const Login = () => {
                                 <CardBody>
                                     <Form onSubmit={handleFormSubmit}>
                                         {/* Email Field */}
-                                        <FormGroup>
-                                            <Label for="email">Enter Email</Label>
-                                            <Input type="text" id="email"
+                                        <FormGroup className="floating-input">
+                                            <Input type="text" id="email" placeholder=""
                                                 value={loginDetail.username}
                                                 onChange={(e) => handleChange(e, 'username')}
                                             />
+                                            <Label for="email">Enter Email</Label>
                                         </FormGroup>
                                         {/* Password Field */}
-                                        <FormGroup>
-                                            <Label for="password">Enter Password</Label>
-                                            <Input type="password" id="password"
+                                        <FormGroup className="floating-input">
+                                            <Input type="password" id="password" placeholder=""
                                                 value={loginDetail.password}
                                                 onChange={(e) => handleChange(e, 'password')}
                                             />
+                                            <Label for="password">Enter Password</Label>
                                         </FormGroup>
 
                                         <Container>
