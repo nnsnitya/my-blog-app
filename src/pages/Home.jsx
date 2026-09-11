@@ -3,6 +3,7 @@ import Base from "../components/Base";
 import { Col, Container, Row } from "reactstrap";
 import { loadAllPosts } from "../services/post-service";
 import NewFeed from "../components/NewFeed";
+import CategorySideMenu from "../components/CategorySideMenu";
 
 const Home = () => {
 
@@ -12,7 +13,14 @@ const Home = () => {
     return (
         <Base>
             <Container className="mt-3">
-                <NewFeed />
+                <Row>
+                    <Col md={2}>
+                        <CategorySideMenu />
+                    </Col>
+                    <Col md={10}>
+                        <NewFeed />
+                    </Col>
+                </Row>
             </Container>
         </Base>
     );
