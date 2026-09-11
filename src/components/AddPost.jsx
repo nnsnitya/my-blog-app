@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Card, CardBody, Container, Form, Input, Label } from "reactstrap";
 import { loadAllCategories } from "../services/category-service";
 import JoditEditor from "jodit-react";
-import { createPost as submitPostToServer } from "../services/post-service";
+import { createPost as submitPostToServer, uploadPostImage } from "../services/post-service";
 import { getCurrentUser } from "../auth";
 import { toast } from "react-toastify";
 
@@ -16,9 +16,11 @@ const AddPost = () => {
         categoryId: ''
     });
 
-    const config = {
-        placeholder: "Start typing..."
-    }
+    const [image, setImage] = useState(null);
+
+    // const config = {
+    //     placeholder: "Start typing..."
+    // }
 
     useEffect(
         () => {
@@ -61,14 +63,31 @@ const AddPost = () => {
         //submit the form to server
         post['userId'] = user.id;
         submitPostToServer(post).then(data => {
+            uploadPostImage(image, data.postId)
+                .then(resp => {
+                    toast.success("Image Uploaded !!");
+                }).catch(err => {
+                    toast.error("Error in uploading image");
+                    console.log(err);
+                })
             toast.success("Post created");
-            console.log(post);
+            setPost({
+                title: '',
+                content: '',
+                categoryId: ''
+            })
+            // console.log(post);
         }).catch((error) => {
             toast.error("error");
             console.log(error);
         });
     };
 
+    //handling file change event
+    const handleFileChange = (e) => {
+        console.log(e.target.files[0]);
+        setImage(e.target.files[0]);
+    }
     return (
         <div className="wrapper">
             <Card className="shadow-sm border-0 mt-4">
@@ -86,6 +105,11 @@ const AddPost = () => {
                             <JoditEditor
                                 ref={editor} value={post.content}
                                 onChange={contentFieldChanged} />
+                        </div>
+                        {/* file field */}
+                        <div className="mt-3">
+                            <Label for="image">Select post banner</Label>
+                            <Input id="image" type="file" onChange={handleFileChange} />
                         </div>
                         <div className="my-3">
                             <Label for="category">Post Category</Label>
