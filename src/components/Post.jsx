@@ -6,7 +6,7 @@ export const Post = ({ post = { title: "This is default post title", content: "T
     return (
         <Card className="shadow-sm mt-3">
             <CardBody>
-                <h1>{post.title}</h1>
+                <h3>{post.title}</h3>
                 <CardText dangerouslySetInnerHTML={{ __html: post.content.substring(0, 60) + "..." }}>
 
                 </CardText>

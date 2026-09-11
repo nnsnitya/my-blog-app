@@ -66,7 +66,7 @@ const NewFeed = () => {
                 <Col md={{
                     size: 12
                 }}>
-                    <h1>Blog Count {postContent?.totalElements}</h1>
+                    <h1>Post Count ({postContent?.totalElements})</h1>
                     <InfiniteScroll
                         dataLength={postContent.content.length}
                         next={changePageInfinite}
