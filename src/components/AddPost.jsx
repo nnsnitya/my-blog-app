@@ -26,9 +26,9 @@ const AddPost = () => {
     useEffect(
         () => {
             setUser(getCurrentUser());
-            loadAllCategories().then((data) => {
-                console.log(data);
-                setCategories(data);
+            loadAllCategories().then((resp) => {
+                console.log(resp);
+                setCategories(resp.data);
             }).catch(error => {
                 console.log(error);
             })
