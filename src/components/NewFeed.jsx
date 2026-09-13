@@ -55,6 +55,19 @@ const NewFeed = () => {
         }
     };
 
+    const deletePost = (post => {
+        //confirm msg
+        //going to delete post
+        deletePostService(post.postId).then(resp => {
+            console.log(resp);
+            toast.success("post is deleted..");
+            loadPostData();
+        }).catch(err => {
+            console.log(err);
+            toast.error("error in deleting post");
+        })
+    })
+
     const changePageInfinite = () => {
         console.log("page changed..");
         setCurrentPage(prev => prev + 1);

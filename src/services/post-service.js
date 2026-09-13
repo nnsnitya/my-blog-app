@@ -47,3 +47,8 @@ export const loadPostUserWise = (userId) => {
     return privateAxios.get(`/posts/user/${userId}`)
         .then(resp => resp.data);
 }
+
+export const deletePostService = (postId) => {
+    return privateAxios.delete(`/posts/${postId}`)
+        .then(resp => resp.data)
+}
