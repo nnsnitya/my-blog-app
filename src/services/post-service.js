@@ -36,3 +36,9 @@ export const uploadPostImage = (image, postId) => {
     })
         .then((resp) => resp.data.data);
 };
+
+//get post by category
+export const loadPostCategoryWise = (categoryId) => {
+    return privateAxios.get(`/posts/category/${categoryId}`)
+        .then(resp => resp.data);
+}

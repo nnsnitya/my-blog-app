@@ -61,11 +61,9 @@ const NewFeed = () => {
     };
 
     return (
-        <div className="container">
+        <div>
             <Row>
-                <Col md={{
-                    size: 12
-                }}>
+                <Col md={{ size: 12 }}>
                     <h1>Post Count ({postContent?.totalElements})</h1>
                     <InfiniteScroll
                         dataLength={postContent.content.length}
