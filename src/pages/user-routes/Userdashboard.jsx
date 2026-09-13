@@ -29,18 +29,19 @@ const Userdashboard = () => {
             })
     }
     //function to delete post
-    const deletePost = (post => {
+    const deletePost = (post) => {
         //confirm msg
         //going to delete post
         deletePostService(post.postId).then(resp => {
             console.log(resp);
             toast.success("post is deleted..");
-            loadPostData();
+            let newPosts = posts.filter(p => p.postId != post.postId);
+            setPosts([...newPosts]);
         }).catch(err => {
             console.log(err);
             toast.error("error in deleting post");
         })
-    })
+    };
     return (
         <Base>
             <Container>

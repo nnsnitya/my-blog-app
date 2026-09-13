@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { loadAllPosts } from "../services/post-service";
+import { deletePostService, loadAllPosts } from "../services/post-service";
 import { Col, Container, Row } from "reactstrap";
 import { Post as SinglePost } from "./Post";
 import { toast } from "react-toastify";
@@ -55,18 +55,20 @@ const NewFeed = () => {
         }
     };
 
-    const deletePost = (post => {
+    const deletePost = (post) => {
         //confirm msg
         //going to delete post
         deletePostService(post.postId).then(resp => {
             console.log(resp);
             toast.success("post is deleted..");
-            loadPostData();
+
+            let newPostContents = postContent.content.filter(p => p.postId != post.postId);
+            setPostContent({ ...postContent, content: newPostContents })
         }).catch(err => {
             console.log(err);
             toast.error("error in deleting post");
         })
-    })
+    }
 
     const changePageInfinite = () => {
         console.log("page changed..");
@@ -91,7 +93,7 @@ const NewFeed = () => {
                     >
                         {
                             postContent.content?.map((post) => (
-                                <SinglePost post={post} key={post.postId} />
+                                <SinglePost deletePost={deletePost} post={post} key={post.postId} />
                             ))
                         }
                     </InfiniteScroll>
