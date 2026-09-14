@@ -1,4 +1,4 @@
-import { Container } from "reactstrap";
+import { Card, CardBody, Container } from "reactstrap";
 import AddPost from "../../components/AddPost";
 import Base from "../../components/Base";
 import NewFeed from "../../components/NewFeed";
@@ -47,7 +47,11 @@ const Userdashboard = () => {
             <Container>
 
                 <AddPost />
-                <h1 className="mt-3">Posts Count ({posts.length})</h1>
+                <Card color="info" className="mt-3">
+                    <CardBody className="text-end">
+                        <h1>Posts Count ({posts.length})</h1>
+                    </CardBody>
+                </Card>
                 {posts.map(post => {
                     return (
                         <Post post={post} key={post.postId} deletePost={deletePost} />

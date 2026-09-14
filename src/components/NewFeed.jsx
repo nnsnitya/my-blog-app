@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { deletePostService, loadAllPosts } from "../services/post-service";
-import { Col, Container, Row } from "reactstrap";
+import { Card, CardBody, Col, Container, Row } from "reactstrap";
 import { Post as SinglePost } from "./Post";
 import { toast } from "react-toastify";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -79,7 +79,12 @@ const NewFeed = () => {
         <div>
             <Row>
                 <Col md={{ size: 12 }}>
-                    <h1>Post Count ({postContent?.totalElements})</h1>
+                    <Card color="info">
+                        <CardBody className="text-end">
+                            <h1 style={{ fontSize: 25 }}>Posts Count ({postContent?.totalElements})</h1>
+                        </CardBody>
+                    </Card>
+
                     <InfiniteScroll
                         dataLength={postContent.content.length}
                         next={changePageInfinite}

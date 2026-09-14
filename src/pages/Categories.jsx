@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { deletePostService, loadPostCategoryWise } from "../services/post-service";
 import { toast } from "react-toastify";
 import Base from "../components/Base";
-import { Col, Container, Row } from "reactstrap";
+import { Card, CardBody, Col, Container, Row } from "reactstrap";
 import { Post } from "../components/Post";
 import CategorySideMenu from "../components/CategorySideMenu";
 
@@ -45,7 +45,11 @@ const Categories = () => {
                         <CategorySideMenu />
                     </Col>
                     <Col md={10}>
-                        <h1>Post Count ({posts.length})</h1>
+                        <Card color="info">
+                            <CardBody className="text-end">
+                                <h1 style={{ fontSize: 25 }}>Posts Count ({posts.length})</h1>
+                            </CardBody>
+                        </Card>
                         {
                             posts && posts.map((post) => {
                                 return (
