@@ -1,5 +1,5 @@
 import CustomNavbar from "./CustomNavbar";
-import bgImage from "../assets/hero.png";
+import bgImage from "../assets/images/bg_image_blog.jpg";
 import "../assets/css/Base.css"
 
 
