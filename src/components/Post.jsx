@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button, Card, CardBody, CardText } from "reactstrap";
 import { getCurrentUser, isLoggedIn } from "../auth";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import userContext from "../context/userContext";
 
 export const Post = ({ post = { postId: -1, title: "This is default post title", content: "This is default content" }, deletePost }) => {
+    const userContxtData = useContext(userContext);
     const [user, setUser] = useState();
     useEffect(() => {
         setUser(getCurrentUser);
@@ -19,7 +21,7 @@ export const Post = ({ post = { postId: -1, title: "This is default post title",
                 <div>
                     <Link className="btn btn-secondary" to={'/posts/' + post.postId}>Read More</Link>
                     {
-                        isLoggedIn && (user && user.id === post.userId ?
+                        userContxtData.user.login && (user && user.id === post.userId ?
                             <Button onClick={() => deletePost(post)} color="danger" className="ms-2" >Delete</Button> : '')
                     }
                 </div>

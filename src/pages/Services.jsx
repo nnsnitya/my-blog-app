@@ -4,11 +4,11 @@ const MyServices = () => {
 
     return (
         <userContext.Consumer>
-            {(user) => (
+            {(ctx) => (
                 <Base>
                     <div>
                         <h1>This is My Services page</h1>
-                        <p>Welcome, {user.name}</p>
+                        <p>Welcome, {ctx.user.login ? ctx.user.data.name : "Guest"}</p>
                     </div>
                 </Base>
             )}

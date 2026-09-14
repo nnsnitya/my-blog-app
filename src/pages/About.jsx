@@ -4,12 +4,13 @@ const About = () => {
 
     return (
         <userContext.Consumer>
-            {(user) => (
+            {(ctxObj) => (
                 <Base>
                     <div>
                         <h1>This is About page</h1>
                         <p>Welcome to About page</p>
-                        <h1>Welcome, {user.name}</h1>
+
+                        <h1>Welcome, {ctxObj.user.login ? ctxObj.user.data.name : "Guest"}</h1>
                     </div>
                 </Base>
             )}
