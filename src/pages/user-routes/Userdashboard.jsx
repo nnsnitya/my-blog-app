@@ -49,7 +49,7 @@ const Userdashboard = () => {
                 <AddPost />
                 <Card color="info" className="mt-3">
                     <CardBody className="text-end">
-                        <h1>Posts Count ({posts.length})</h1>
+                        <h1 style={{ fontSize: 25 }}>Posts Count ({posts.length})</h1>
                     </CardBody>
                 </Card>
                 {posts.map(post => {
