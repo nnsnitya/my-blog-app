@@ -63,14 +63,16 @@ const AddPost = () => {
 
         //submit the form to server
         post['userId'] = user.id;
-        submitPostToServer(post).then(data => {
-            uploadPostImage(image, data.postId)
-                .then(resp => {
+        submitPostToServer(post).then(async (data) => {
+            if (image) {
+                try {
+                    await uploadPostImage(image, data.postId);
                     toast.success("Image Uploaded !!");
-                }).catch(err => {
+                } catch (err) {
                     toast.error("Error in uploading image");
                     console.log(err);
-                })
+                }
+            }
             toast.success("Post created");
             setPost({
                 title: '',
