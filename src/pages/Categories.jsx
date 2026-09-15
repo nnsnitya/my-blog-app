@@ -41,10 +41,10 @@ const Categories = () => {
         <Base>
             <Container className="mt-3">
                 <Row>
-                    <Col md={2}>
+                    <Col md={2} className="fixed-sidebar">
                         <CategorySideMenu />
                     </Col>
-                    <Col md={10}>
+                    <Col md={7}>
                         <Card color="info">
                             <CardBody className="text-end">
                                 <h1 style={{ fontSize: 25 }}>Posts Count ({posts.length})</h1>
@@ -60,6 +60,9 @@ const Categories = () => {
                         {
                             posts.length <= 0 ? <h1>No posts in this category</h1> : ''
                         }
+                    </Col>
+                    <Col md={3} className="fixed-sidebar">
+                        <CategorySideMenu />
                     </Col>
                 </Row>
             </Container>
