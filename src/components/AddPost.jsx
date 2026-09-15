@@ -11,11 +11,7 @@ const AddPost = () => {
     const editor = useRef(null);
     const [categories, setCategories] = useState([]);
     const [user, setUser] = useState(undefined);
-    const [post, setPost] = useState({
-        title: '',
-        content: '',
-        categoryId: ''
-    });
+    const [post, setPost] = useState({ title: '', content: '', categoryId: '' });
 
     const [image, setImage] = useState(null);
 
@@ -93,7 +89,7 @@ const AddPost = () => {
     }
     return (
         <div className="wrapper">
-            <Card className="shadow-sm border-0 mt-4">
+            <Card className="shadow-sm border-0">
                 <CardBody>
                     <h3>What's going in your mind</h3>
                     <Form onSubmit={createPost}>

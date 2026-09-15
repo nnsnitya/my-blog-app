@@ -82,7 +82,7 @@ const Login = () => {
                                                 value={loginDetail.username}
                                                 onChange={(e) => handleChange(e, 'username')}
                                             />
-                                            <Label for="email">Enter Email</Label>
+                                            <Label className="rounded" for="email">Enter Email</Label>
                                         </FormGroup>
                                         {/* Password Field */}
                                         <FormGroup className="floating-input">
@@ -90,7 +90,7 @@ const Login = () => {
                                                 value={loginDetail.password}
                                                 onChange={(e) => handleChange(e, 'password')}
                                             />
-                                            <Label for="password">Enter Password</Label>
+                                            <Label className="rounded" for="password">Enter Password</Label>
                                         </FormGroup>
 
                                         <Container>
