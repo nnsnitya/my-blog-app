@@ -1,4 +1,4 @@
-import { Card, CardBody, Container } from "reactstrap";
+import { Card, CardBody, Col, Container, Row } from "reactstrap";
 import AddPost from "../../components/AddPost";
 import Base from "../../components/Base";
 import NewFeed from "../../components/NewFeed";
@@ -7,6 +7,8 @@ import { getCurrentUser } from "../../auth";
 import { deletePostService, loadPostUserWise } from "../../services/post-service";
 import { toast } from "react-toastify";
 import { Post } from "../../components/Post";
+import CategorySideMenu from "../../components/CategorySideMenu";
+// import "../../assets/css/Fixedbars.css";
 
 const Userdashboard = () => {
     const [user, setUser] = useState({});
@@ -44,19 +46,29 @@ const Userdashboard = () => {
     };
     return (
         <Base>
-            <Container>
+            <Container className="mt-3">
+                <Row>
+                    <Col md={2} className="fixed-sidebar">
+                        <CategorySideMenu />
+                    </Col>
+                    <Col md={7}>
+                        <AddPost />
+                        <Card color="info" className="mt-3">
+                            <CardBody className="text-end">
+                                <h1 style={{ fontSize: 25 }}>Posts Count ({posts.length})</h1>
+                            </CardBody>
+                        </Card>
+                        {posts.map(post => {
+                            return (
+                                <Post post={post} key={post.postId} deletePost={deletePost} />
+                            )
+                        })}
+                    </Col>
+                    <Col md={3} className="fixed-sidebar">
+                        <CategorySideMenu />
+                    </Col>
+                </Row>
 
-                <AddPost />
-                <Card color="info" className="mt-3">
-                    <CardBody className="text-end">
-                        <h1 style={{ fontSize: 25 }}>Posts Count ({posts.length})</h1>
-                    </CardBody>
-                </Card>
-                {posts.map(post => {
-                    return (
-                        <Post post={post} key={post.postId} deletePost={deletePost} />
-                    )
-                })}
             </Container>
         </Base>
 

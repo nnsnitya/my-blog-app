@@ -5,9 +5,7 @@ import "../assets/css/Base.css"
 
 const Base = ({ title = "Welcome to our website", children }) => {
     return (
-        <div className="base-page" style={{
-            backgroundImage: `url(${bgImage})`
-        }}>
+        <div className="base-page" style={{ backgroundImage: `url(${bgImage})` }}>
 
             <CustomNavbar />
 

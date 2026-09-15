@@ -6,6 +6,7 @@ import {
 } from "reactstrap";
 import { doLogout, getCurrentUser, isLoggedIn } from "../auth";
 import userContext from "../context/userContext";
+import "../assets/css/Fixedbars.css";
 
 const CustomNavbar = (props) => {
     const userContxtData = useContext(userContext);
@@ -30,7 +31,7 @@ const CustomNavbar = (props) => {
     }
 
     return (
-        <div>
+        <div className="fixed-header">
             <Navbar {...props} color='dark' dark expand="md" fixed='' className='px-5'>
                 <NavbarBrand tag={ReactLink} to="/">My Blog Logo</NavbarBrand>
                 <NavbarToggler onClick={() => setIsOpen(!isOpen)} />

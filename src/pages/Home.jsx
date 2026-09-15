@@ -14,11 +14,14 @@ const Home = () => {
         <Base>
             <Container className="mt-3">
                 <Row>
-                    <Col md={2}>
+                    <Col md={2} className="fixed-sidebar">
                         <CategorySideMenu />
                     </Col>
-                    <Col md={10}>
+                    <Col md={7}>
                         <NewFeed />
+                    </Col>
+                    <Col md={3} className="fixed-sidebar">
+                        <CategorySideMenu />
                     </Col>
                 </Row>
             </Container>
