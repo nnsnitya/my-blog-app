@@ -4,16 +4,15 @@
     display: flex;
     flex-direction: column;
 
-    background-size: 100% auto;
+    background-size: cover;
     background-position: center;
-    background-repeat: repeat-y;
+    background-attachment: fixed;
 }
 
 html,
 body,
 #root {
     margin: 0;
-    background-repeat: repeat-y;
 }
 
 .app-content {
