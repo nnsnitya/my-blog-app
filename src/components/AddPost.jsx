@@ -11,9 +11,10 @@ const AddPost = () => {
     const editor = useRef(null);
     const [categories, setCategories] = useState([]);
     const [user, setUser] = useState(undefined);
-    const [post, setPost] = useState({ title: '', content: '', categoryId: '' });
-
-    const [image, setImage] = useState(null);
+    const [post, setPost] = useState({ title: '', content: '', categoryId: '', userId: '', imageName: '' });
+    const [uploading, setUploading] = useState(false);
+    const [submittng, setSubmitting] = useState(false);
+    // const [image, setImage] = useState(null);
 
     // const config = {
     //     placeholder: "Start typing..."
@@ -35,57 +36,81 @@ const AddPost = () => {
     }
 
     const contentFieldChanged = (data) => {
-        console.log(data);
+        // console.log(data);
         setPost({ ...post, 'content': data });
     };
 
     //create post function
-    const createPost = (e) => {
+    const createPost = async (e) => {
         e.preventDefault();
 
-        //validation
-        if (post.title.trim() === '') {
-            toast.error("Title is required !!");
-            return;
-        }
-        if (post.content.trim === '') {
-            toast.error("Content is required !!");
-            return;
-        }
-        if (post.categoryId === '') {
-            toast.error("Select some category !!");
-            return;
-        }
+        try {
+            setSubmitting(true);
+            // 2. Prepare Post DTO
+            // const post = { title: post.title, content: post.content, categoryId: post.categoryId, userId: user.id, fileName: fileName };
+            console.log("Creating post:", post);
 
-        //submit the form to server
-        post['userId'] = user.id;
-        submitPostToServer(post).then(async (data) => {
-            if (image) {
-                try {
-                    await uploadPostImage(image, data.postId);
-                    toast.success("Image Uploaded !!");
-                } catch (err) {
-                    toast.error("Error in uploading image");
-                    console.log(err);
-                }
+            //validation
+            if (post.title.trim() === '') {
+                toast.error("Title is required !!");
+                return;
             }
-            toast.success("Post created");
+            if (post.content.trim === '') {
+                toast.error("Content is required !!");
+                return;
+            }
+            if (post.categoryId === '') {
+                toast.error("Select some category !!");
+                return;
+            }
+            // 3. Create Post
+            post['userId'] = user.id;
+            const data = await submitPostToServer(post);
+            console.log("Post created:", data);
+            toast.success("Post created successfully!");
+
+            //4. Reset Form
             setPost({
                 title: '',
                 content: '',
-                categoryId: ''
+                categoryId: '',
+                imageName: ''
             })
-            // console.log(post);
-        }).catch((error) => {
-            toast.error("error");
-            console.log(error);
-        });
+            // setImage(null);
+        } catch (error) {
+            console.error("Error creating post:", error);
+            toast.error("Error creating post");
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     //handling file change event
-    const handleFileChange = (e) => {
-        console.log(e.target.files[0]);
-        setImage(e.target.files[0]);
+    const handleFileChange = async (e) => {
+        const selectedFile = e.target.files[0];
+        if (selectedFile) {
+            console.log("Selected File: ", selectedFile);
+            // setImage(selectedFile);
+            let fileName = null;
+            setUploading(true);
+            //1. Upload image first
+            // if (image) {
+            try {
+                console.log("Uploading image...");
+                const uploadData = await uploadPostImage(selectedFile);
+                console.log("Image uploaded:", uploadData); // filename/objectKey returned by backend
+                fileName = uploadData.imageName;
+                post['imageName'] = fileName;
+                console.log("image uploaded...");
+            } catch (err) {
+                console.error("Image upload failed:", err);
+                toast.error("Error in uploading image"); return;
+            } finally {
+                setUploading(false);
+            }
+            // }
+        }
+
     }
     return (
         <div className="wrapper">
@@ -127,7 +152,10 @@ const AddPost = () => {
 
                         </div>
                         <Container className="text-center">
-                            <Button type="submit" color="primary">Create Post</Button>
+                            <Button type="submit" color="primary" disabled={uploading || submittng}>
+                                {uploading ? "Uploading image..."
+                                    : submittng ? "Creating post..." : "Create Post"}
+                            </Button>
                             <Button type="reset" color="danger" className="ms-2">Reset Content</Button>
                         </Container>
                     </Form>

@@ -26,10 +26,10 @@ export const createComment = (comment, postId) => {
 };
 
 //upload post banner image
-export const uploadPostImage = (image, postId) => {
+export const uploadPostImage = (image) => {
     let formData = new FormData();
     formData.append("image", image);
-    return privateAxios.post(`/posts/image/upload/${postId}`, formData, {
+    return privateAxios.post(`/posts/image/upload`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
