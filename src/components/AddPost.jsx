@@ -91,7 +91,6 @@ const AddPost = () => {
         if (selectedFile) {
             console.log("Selected File: ", selectedFile);
             // setImage(selectedFile);
-            let fileName = null;
             setUploading(true);
             //1. Upload image first
             // if (image) {
@@ -99,8 +98,7 @@ const AddPost = () => {
                 console.log("Uploading image...");
                 const uploadData = await uploadPostImage(selectedFile);
                 console.log("Image uploaded:", uploadData); // filename/objectKey returned by backend
-                fileName = uploadData.imageName;
-                post['imageName'] = fileName;
+                post['imageName'] = uploadData.objectKey;
                 console.log("image uploaded...");
             } catch (err) {
                 console.error("Image upload failed:", err);
